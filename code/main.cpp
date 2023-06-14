@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <chrono>
 #include <string.h>
-#include "librerias.h"
 #include <fstream>
 #include "AVLTree.hpp"
 
@@ -10,79 +9,263 @@ using namespace std;
 
 string university, user_id, user_name, number_tweets, friends_count, followers_count, created_at;
 
+AVLTree<string> tree_string;
+AVLTree<long> tree_long;
 
+//PARA TOMAR EL TIEMPO
+template <typename Func>
+long long execution_time_ms(Func function, string tarea, int id_dataset) {
+  auto start_time = std::chrono::high_resolution_clock::now();
+  
+  function(tarea, id_dataset);
+
+  auto end_time = std::chrono::high_resolution_clock::now();
+  return std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+}
+
+// PROCESOS
+// 1 - insert_arbol_userid
+void insert_arbol_user_id(int id_dataset)
+{
+    //INPUT
+    string filename = "datasets/input/input" + to_string(id_dataset) + ".csv";
+    ifstream file;
+
+    file.open(filename);
+    if(!file.is_open()){
+        cout << "ERROR!!! el archivo " << filename << " no se pudo abrir\n";
+        return;
+    }
+
+    //LEE ENCABEZADO QUE NO SIRVE
+    getline(file, university, ';');
+    getline(file, user_id, ';');
+    getline(file, user_name, ';');
+    getline(file, number_tweets, ';');
+    getline(file, friends_count, ';');
+    getline(file, followers_count, ';');
+    getline(file, created_at, '\n');
+
+    while (!file.eof()) {
+
+        getline(file, university, ';');
+        getline(file, user_id, ';');
+        getline(file, user_name, ';');
+        getline(file, number_tweets, ';');
+        getline(file, friends_count, ';');
+        getline(file, followers_count, ';');
+        getline(file, created_at, '\n');
+
+        tree_long.insert(stol(user_id));
+
+    }
+
+    return;
+}
+
+
+// 2 - insert_arbol_user_name
+void insert_arbol_user_name(int id_dataset)
+{
+    //INPUT
+    string filename = "datasets/input/input" + to_string(id_dataset) + ".csv";
+    ifstream file;
+
+    file.open(filename);
+    if(!file.is_open()){
+        cout << "ERROR!!! el archivo " << filename << " no se pudo abrir\n";
+        return;
+    }
+
+    //LEE ENCABEZADO QUE NO SIRVE
+    getline(file, university, ';');
+    getline(file, user_id, ';');
+    getline(file, user_name, ';');
+    getline(file, number_tweets, ';');
+    getline(file, friends_count, ';');
+    getline(file, followers_count, ';');
+    getline(file, created_at, '\n');
+
+    while (!file.eof()) {
+
+        getline(file, university, ';');
+        getline(file, user_id, ';');
+        getline(file, user_name, ';');
+        getline(file, number_tweets, ';');
+        getline(file, friends_count, ';');
+        getline(file, followers_count, ';');
+        getline(file, created_at, '\n');
+
+        tree_string.insert(user_name);
+
+    }
+
+    return;
+}
+
+
+// 3 - delete_arbol_user_id
+void delete_arbol_user_id(int id_dataset)
+{
+    //INPUT
+    string filename = "datasets/delete/input" + to_string(id_dataset) + ".csv";
+    ifstream file;
+
+    file.open(filename);
+    if(!file.is_open()){
+        cout << "ERROR!!! el archivo " << filename << " no se pudo abrir\n";
+        return;
+    }
+
+    //LEE ENCABEZADO QUE NO SIRVE
+    getline(file, university, ';');
+    getline(file, user_id, ';');
+    getline(file, user_name, ';');
+    getline(file, number_tweets, ';');
+    getline(file, friends_count, ';');
+    getline(file, followers_count, ';');
+    getline(file, created_at, '\n');
+
+    while (!file.eof()) {
+
+        getline(file, university, ';');
+        getline(file, user_id, ';');
+        getline(file, user_name, ';');
+        getline(file, number_tweets, ';');
+        getline(file, friends_count, ';');
+        getline(file, followers_count, ';');
+        getline(file, created_at, '\n');
+
+        tree_string.erase(user_id);
+
+    }
+
+    return;
+}
+
+// 4 - delete_arbol_user_name
+void delete_arbol_user_name(int id_dataset)
+{
+    //INPUT
+    string filename = "datasets/delete/input" + to_string(id_dataset) + ".csv";
+    ifstream file;
+
+    file.open(filename);
+    if(!file.is_open()){
+        cout << "ERROR!!! el archivo " << filename << " no se pudo abrir\n";
+        return;
+    }
+
+    //LEE ENCABEZADO QUE NO SIRVE
+    getline(file, university, ';');
+    getline(file, user_id, ';');
+    getline(file, user_name, ';');
+    getline(file, number_tweets, ';');
+    getline(file, friends_count, ';');
+    getline(file, followers_count, ';');
+    getline(file, created_at, '\n');
+
+    while (!file.eof()) {
+
+        getline(file, university, ';');
+        getline(file, user_id, ';');
+        getline(file, user_name, ';');
+        getline(file, number_tweets, ';');
+        getline(file, friends_count, ';');
+        getline(file, followers_count, ';');
+        getline(file, created_at, '\n');
+
+        tree_string.erase(user_name);
+
+    }
+
+    return;
+}
+
+
+
+//CENTRO DE LLAMADA DE FUNCIONES
+void centro_tareas(string tarea, int id_dataset)
+{
+    if (tarea=="insert_arbol_user_id") {return insert_arbol_user_id(id_dataset); } 
+    if (tarea=="insert_arbol_user_name") {return insert_arbol_user_name(id_dataset); } 
+
+    if (tarea=="delete_arbol_user_id") {return delete_arbol_user_id(id_dataset); } 
+    if (tarea=="delete_arbol_user_name") {return delete_arbol_user_name(id_dataset); } 
+
+    //if (tarea=="test-hashing") {return test_hashing();
+
+
+}
+
+
+//BLOQUE PRINCIPAL
 int main(int argv, char* argc[]) {
   srand(time(NULL)); 
 
-  int n;
+  int n; //tamaño muestras (1000, 5000, 10000, 15000 y total)
+  int id_proceso;
+
   int numero_de_experimentos;
   string dir_csv;
   string tarea_seleccionada;
   string nombre_archivo_salida;
 
+  dir_csv = "csv/";
+
   cout<<"INICIO"<<endl;
 
   //TIPOS DE PRUEBAS
-  switch(atoi(argc[1])){
 
-    case 1: tarea_seleccionada = "insert-arbol-userid"; break;
-    case 2: tarea_seleccionada = "insert-arbol-username"; break;
-    case 3: tarea_seleccionada = "delete-arbol-userid"; break;
-    case 4: tarea_seleccionada = "delete-arbol-username"; break;
-    case 5: tarea_seleccionada = "search-in-arbol-userid"; break;
-    case 6: tarea_seleccionada = "search-in-arbol-username"; break;
-    case 7: tarea_seleccionada = "search-out-arbol-userid"; break;
-    case 8: tarea_seleccionada = "search-put-arbol-username"; break;
+  id_proceso=atoi(argc[1]);
+
+  switch(id_proceso){
+
+    case 1: tarea_seleccionada = "insert_arbol_user_id"; break;
+    case 2: tarea_seleccionada = "insert_arbol_user_name"; break;
+
+    case 3: tarea_seleccionada = "delete_arbol_user_id"; break;
+    case 4: tarea_seleccionada = "delete_arbol_user_name"; break;
+
+    case 5: tarea_seleccionada = "search_in_arbol_user_id"; break;
+    case 6: tarea_seleccionada = "search_in_arbol_user_name"; break;
+
+    case 7: tarea_seleccionada = "search_out_arbol_user_id"; break;
+    case 8: tarea_seleccionada = "search_put_arbol_user_name"; break;
 
     default: tarea_seleccionada = ""; break;
-  }
-
-  switch(atoi(argc[3])){
-    case 1: dir_csv = "csv/csv1/"; break;
-    case 2: dir_csv = "csv/csv2/"; break;
-    case 3: dir_csv = "csv/csv3/"; break;
-    case 4: dir_csv = "csv/csv4/"; break;
-    case 5: dir_csv = "csv/csv5/"; break;
-    case 6: dir_csv = "csv/csv6/"; break;
-    case 7: dir_csv = "csv/csv7/"; break;
-    case 8: dir_csv = "csv/csv8/"; break;
-
-
-    default: dir_csv = ""; break;
   }
 
   //SI ENTRA CON PARÁMETROS, REALIZA EL TEST
   if((argv > 2) && (strcmp(argc[2],"--test") == 0)){
 
-    //cout<<"ARG:" << argc[4]<<endl;
+    int id_dataset = atoi(argc[4]);
+    switch(atoi(argc[4]))
+    {
+      case 1: n = 1000; break;
+      case 2: n = 5000; break;
+      case 3: n = 10000; break;
+      case 4: n = 15000; break;
+      case 5: n = 29246; break;
 
-    //LEE EL TAMAÑO DEL VECTOR
-  
+      default: n = 0; break;
+    }
 
-
-    //Ignorar primera fila
-    //29245
-
-
-
-    //DEFINE MATRICES DE ENTRADA
-    //vector<int> M_A(n);   //MATRIZ A
-    //vector<int> result;  //MATRIZ RESULTADO
-
-    //LEE VECTOR
-    //read_vector(M_A);
-    
-    //IMPRIME VECTOR EN OUTPUT
     cout<<"Tarea seleccionada: "<< tarea_seleccionada<<endl;
-    //cout<< "Vector inicial:"<<endl;
-    //print_vector(M_A);
 
-    //EJECUTA CON EL ALGORITMO SELCCIONADO
-    //result = vector_ordena(M_A, tarea_seleccionada);
-    //cout<< "Resultado:"<<endl;
+    //Si el proceso es de tipo search o delete, primero debe estar cargada toda la información
+    if (id_proceso>2 && id_proceso<9)
+    {
+      // SE REQUIERE CARGA PREVIA
 
-    //IMPRIME SALIDA EN OUTPUT
-    //print_vector(result);
+      //DATASET 5 es lleno
+     insert_arbol_user_id(5);
+     insert_arbol_user_name(5);
+
+      tree_string.erase("sdfsdf");
+
+
+    }
 
     nombre_archivo_salida = dir_csv + tarea_seleccionada + "_results.csv";
     ofstream outfile(nombre_archivo_salida,std::ios::app);
@@ -91,9 +274,7 @@ int main(int argv, char* argc[]) {
     int numero_de_experimentos=1;
     for(int j = 0; j < numero_de_experimentos; j++){ 
 
-      //long long single_execution_time = execution_time_ms(vector_ordena, M_A, tarea_seleccionada);
-      
-      long long single_execution_time = execution_time_ms(vector_ordena, tarea_seleccionada);
+      long long single_execution_time = execution_time_ms(centro_tareas, tarea_seleccionada, id_dataset);
       mm_total_time += single_execution_time;
       
     }
@@ -115,3 +296,4 @@ int main(int argv, char* argc[]) {
 
 
 }
+

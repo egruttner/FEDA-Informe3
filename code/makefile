@@ -4,15 +4,13 @@ CFLAGS = -std=c++14 -O2
 SRCS = main.cpp 
 OBJS = $(SRCS:.cpp=.o)
 
-LDLIBS="arbolBinarioBusqueda.cpp" "AVLTree.cpp" "AVLTreeNode.cpp"
-
+LDLIBS="AVLTree.cpp" "AVLTreeNode.cpp"
 
 # g++ kod.cpp AVLTree.cpp AVLTreeNode.cpp -o kod -std=c++11
 
+TEST_CASES_NUMBER := $(shell seq 1 5) #rango de archivos de input y output
 
-TEST_CASES_NUMBER := $(shell seq 1 1) #rango de archivos de input y output
-
-RANGE = 1 #distintos algoritmos a probar
+RANGE = 1 2 3 4#distintos algoritmos a probar
 
 # 1 INSERT - Árbol binario de búsqueda sin balanceo - User ID
 # 2 INSERT - Árbol binario de búsqueda sin balanceo - User Name
@@ -44,7 +42,7 @@ RANGE = 1 #distintos algoritmos a probar
 
 INPUT_PREFIX := datasets/input$(num_dataset)/input
 
-OUTPUT_PREFIX := output/output$(num_dataset)/output
+OUTPUT_PREFIX := output/output
 
 all: program
 
@@ -52,8 +50,8 @@ all: program
 		echo "Executing program with $$j --head $$num_dataset"; \
 		./program $$j --head $$num_dataset; \
 		for i in $(TEST_CASES_NUMBER); do \
-			echo "./program --test $$j $$num_dataset > $(OUTPUT_PREFIX)$$j$$i.txt"; \
-			./program $$j --test $$num_dataset > $(OUTPUT_PREFIX)$$j$$i.txt; \
+			echo "./program --test $$j $$num_dataset $$i > $(OUTPUT_PREFIX)$$j$$i.txt"; \
+			./program $$j --test $$num_dataset $$i > $(OUTPUT_PREFIX)$$j$$i.txt; \
 		done; \
 	done
 
