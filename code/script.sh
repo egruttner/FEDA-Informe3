@@ -11,8 +11,12 @@ for (( i=1; i <= $num_datasets; ++i ))
 do
     make num_dataset=$i
 
-    #python3 plot.py csv/insert-arbol-user_id_results.csv insert-arbol-user-id "Gráfico de inserción"
-    #python3 plot.py csv/insert-arbol-user_name_results.csv insert-arbol-user-name "Gráfico de inserción"
+    #python3 plot.py csv/insert_arbol_user_id_results.csv insert_arbol_user_id "Gráfico de inserción"
+    #python3 plot.py csv/insert_arbol_user_name_results.csv insert_arbol_user_name "Gráfico de inserción"
+    #python3 plot.py csv/delete_arbol_user_id_results.csv delete_arbol_user_id "Gráfico de inserción"
+    #python3 plot.py csv/delete_arbol_user_name_results.csv delete_arbol_user_name "Gráfico de inserción"
+
+
 
     #python3 plot.py csv/csv$i/selection_results.csv
     #python3 plot.py csv/csv$i/quicksort_results.csv

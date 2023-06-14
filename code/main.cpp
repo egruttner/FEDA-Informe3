@@ -103,12 +103,11 @@ void insert_arbol_user_name(int id_dataset)
     return;
 }
 
-
-// 3 - delete_arbol_user_id
-void delete_arbol_user_id(int id_dataset)
+// 3 - search_in_arbol_user_id
+void search_in_arbol_user_id(int id_dataset)
 {
     //INPUT
-    string filename = "datasets/delete/input" + to_string(id_dataset) + ".csv";
+    string filename = "datasets/search_in/input" + to_string(id_dataset) + ".csv";
     ifstream file;
 
     file.open(filename);
@@ -136,18 +135,20 @@ void delete_arbol_user_id(int id_dataset)
         getline(file, followers_count, ';');
         getline(file, created_at, '\n');
 
-        tree_string.erase(user_id);
+        tree_long.find(stol(user_id));
+        cout << user_id << " ENCONTRADO" << endl;
 
     }
 
     return;
 }
 
-// 4 - delete_arbol_user_name
-void delete_arbol_user_name(int id_dataset)
+
+// 4 - search_in_arbol_user_name
+void search_in_arbol_user_name(int id_dataset)
 {
     //INPUT
-    string filename = "datasets/delete/input" + to_string(id_dataset) + ".csv";
+    string filename = "datasets/search_in/input" + to_string(id_dataset) + ".csv";
     ifstream file;
 
     file.open(filename);
@@ -175,7 +176,95 @@ void delete_arbol_user_name(int id_dataset)
         getline(file, followers_count, ';');
         getline(file, created_at, '\n');
 
-        tree_string.erase(user_name);
+        tree_string.find(user_name);
+        cout << user_name << " ENCONTRADO" << endl;
+
+    }
+
+    return;
+}
+
+
+
+// 5 - search_out_arbol_user_id
+void search_out_arbol_user_id(int id_dataset)
+{
+    //INPUT
+    string filename = "datasets/search_in/input" + to_string(id_dataset) + ".csv";
+    ifstream file;
+
+    file.open(filename);
+    if(!file.is_open()){
+        cout << "ERROR!!! el archivo " << filename << " no se pudo abrir\n";
+        return;
+    }
+
+    //LEE ENCABEZADO QUE NO SIRVE
+    getline(file, university, ';');
+    getline(file, user_id, ';');
+    getline(file, user_name, ';');
+    getline(file, number_tweets, ';');
+    getline(file, friends_count, ';');
+    getline(file, followers_count, ';');
+    getline(file, created_at, '\n');
+
+    long aux;
+
+    while (!file.eof()) {
+
+        getline(file, university, ';');
+        getline(file, user_id, ';');
+        getline(file, user_name, ';');
+        getline(file, number_tweets, ';');
+        getline(file, friends_count, ';');
+        getline(file, followers_count, ';');
+        getline(file, created_at, '\n');
+
+        aux = stol(user_id);
+        aux++;
+        cout << user_name << tree_long.find(aux) << endl;
+
+    }
+
+    return;
+}
+
+
+
+// 6 - search_out_arbol_user_name
+void search_out_arbol_user_name(int id_dataset)
+{
+    //INPUT
+    string filename = "datasets/search_in/input" + to_string(id_dataset) + ".csv";
+    ifstream file;
+
+    file.open(filename);
+    if(!file.is_open()){
+        cout << "ERROR!!! el archivo " << filename << " no se pudo abrir\n";
+        return;
+    }
+
+    //LEE ENCABEZADO QUE NO SIRVE
+    getline(file, university, ';');
+    getline(file, user_id, ';');
+    getline(file, user_name, ';');
+    getline(file, number_tweets, ';');
+    getline(file, friends_count, ';');
+    getline(file, followers_count, ';');
+    getline(file, created_at, '\n');
+
+    while (!file.eof()) {
+
+        getline(file, university, ';');
+        getline(file, user_id, ';');
+        getline(file, user_name, ';');
+        getline(file, number_tweets, ';');
+        getline(file, friends_count, ';');
+        getline(file, followers_count, ';');
+        getline(file, created_at, '\n');
+
+        user_name = user_name + "X";
+        cout << user_name << tree_string.find(user_name) << endl;
 
     }
 
@@ -190,13 +279,22 @@ void centro_tareas(string tarea, int id_dataset)
     if (tarea=="insert_arbol_user_id") {return insert_arbol_user_id(id_dataset); } 
     if (tarea=="insert_arbol_user_name") {return insert_arbol_user_name(id_dataset); } 
 
-    if (tarea=="delete_arbol_user_id") {return delete_arbol_user_id(id_dataset); } 
-    if (tarea=="delete_arbol_user_name") {return delete_arbol_user_name(id_dataset); } 
+    if (tarea=="search_in_arbol_user_id") {return search_in_arbol_user_id(id_dataset); } 
+    if (tarea=="search_in_arbol_user_name") {return search_in_arbol_user_name(id_dataset); } 
+
+    if (tarea=="search_out_arbol_user_id") {return search_out_arbol_user_id(id_dataset); } 
+    if (tarea=="search_out_arbol_user_name") {return search_out_arbol_user_name(id_dataset); } 
+
 
     //if (tarea=="test-hashing") {return test_hashing();
 
 
 }
+
+
+
+
+
 
 
 //BLOQUE PRINCIPAL
@@ -224,14 +322,11 @@ int main(int argv, char* argc[]) {
     case 1: tarea_seleccionada = "insert_arbol_user_id"; break;
     case 2: tarea_seleccionada = "insert_arbol_user_name"; break;
 
-    case 3: tarea_seleccionada = "delete_arbol_user_id"; break;
-    case 4: tarea_seleccionada = "delete_arbol_user_name"; break;
+    case 3: tarea_seleccionada = "search_in_arbol_user_id"; break;
+    case 4: tarea_seleccionada = "search_in_arbol_user_name"; break;
 
-    case 5: tarea_seleccionada = "search_in_arbol_user_id"; break;
-    case 6: tarea_seleccionada = "search_in_arbol_user_name"; break;
-
-    case 7: tarea_seleccionada = "search_out_arbol_user_id"; break;
-    case 8: tarea_seleccionada = "search_put_arbol_user_name"; break;
+    case 5: tarea_seleccionada = "search_out_arbol_user_id"; break;
+    case 6: tarea_seleccionada = "search_out_arbol_user_name"; break;
 
     default: tarea_seleccionada = ""; break;
   }
@@ -251,10 +346,27 @@ int main(int argv, char* argc[]) {
       default: n = 0; break;
     }
 
+    //SI SON PROCESOS DE BUSQUEDA USAN OTROS RANGOS DE DATASET
+    if (id_proceso==3 || id_proceso==4 || 
+        id_proceso==5 || id_proceso==6)
+    {
+      switch(atoi(argc[4]))
+      {
+        case 1: n = 100; break;
+        case 2: n = 200; break;
+        case 3: n = 300; break;
+        case 4: n = 400; break;
+        case 5: n = 500; break;
+
+        default: n = 0; break;
+      }
+    }
+
+
     cout<<"Tarea seleccionada: "<< tarea_seleccionada<<endl;
 
     //Si el proceso es de tipo search o delete, primero debe estar cargada toda la información
-    if (id_proceso>2 && id_proceso<9)
+    if (id_proceso>2 && id_proceso<7)
     {
       // SE REQUIERE CARGA PREVIA
 
