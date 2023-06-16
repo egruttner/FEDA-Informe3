@@ -1,0 +1,2 @@
+INICIO
+Tarea seleccionada: insert_hash_abierto_user_id

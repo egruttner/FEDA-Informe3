@@ -10,7 +10,7 @@ LDLIBS="AVLTree.cpp" "AVLTreeNode.cpp"
 
 TEST_CASES_NUMBER := $(shell seq 1 5) #rango de archivos de input y output
 
-RANGE = 1 2 3 4 5 6#distintos algoritmos a probar
+RANGE = 7 8 9 10 11 12#distintos algoritmos a probar
 
 # 1 INSERT - Árbol binario de búsqueda sin balanceo - User ID
 # 2 INSERT - Árbol binario de búsqueda sin balanceo - User Name

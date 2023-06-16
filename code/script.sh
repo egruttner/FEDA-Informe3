@@ -2,6 +2,8 @@
 #LIMPIA
 rm main.o
 rm csv/*.*
+rm output/*.*
+
 
 #REALIZA EXPERIMENTOS CON DIFERENTES DATASETS
 
@@ -13,9 +15,12 @@ do
 
     #python3 plot.py csv/insert_arbol_user_id_results.csv insert_arbol_user_id "Gráfico de inserción"
     #python3 plot.py csv/insert_arbol_user_name_results.csv insert_arbol_user_name "Gráfico de inserción"
-    #python3 plot.py csv/delete_arbol_user_id_results.csv delete_arbol_user_id "Gráfico de inserción"
-    #python3 plot.py csv/delete_arbol_user_name_results.csv delete_arbol_user_name "Gráfico de inserción"
 
+    #python3 plot.py csv/search_in_arbol_user_id_results.csv search_in_arbol_user_id "Gráfico de inserción"
+    #python3 plot.py csv/search_in_arbol_user_name_results.csv search_in_arbol_user_name "Gráfico de inserción"
+
+    #python3 plot.py csv/search_out_arbol_user_id_results.csv search_out_arbol_user_id "Gráfico de inserción"
+    #python3 plot.py csv/search_out_arbol_user_name_results.csv search_out_arbol_user_name "Gráfico de inserción"
 
 
     #python3 plot.py csv/csv$i/selection_results.csv
