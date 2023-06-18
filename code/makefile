@@ -4,13 +4,13 @@ CFLAGS = -std=c++14 -O2
 SRCS = main.cpp 
 OBJS = $(SRCS:.cpp=.o)
 
-LDLIBS="AVLTree.cpp" "AVLTreeNode.cpp"
+LDLIBS="AVLTree.cpp" "AVLTreeNode.cpp" "clases_hash.cpp"
 
 # g++ kod.cpp AVLTree.cpp AVLTreeNode.cpp -o kod -std=c++11
 
 TEST_CASES_NUMBER := $(shell seq 1 5) #rango de archivos de input y output
 
-RANGE = 7 8 9 10 11 12#distintos algoritmos a probar
+RANGE = 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18#distintos algoritmos a probar
 
 # 1 INSERT - Árbol binario de búsqueda sin balanceo - User ID
 # 2 INSERT - Árbol binario de búsqueda sin balanceo - User Name

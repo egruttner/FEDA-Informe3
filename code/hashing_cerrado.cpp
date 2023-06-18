@@ -8,14 +8,14 @@ enum EntryStatus {
     BORRADO
 };
 
-class HashTable {
+class HashTableCerradoUser_Id {
 private:
     static const int tableSize = 10;
     vector<pair<long, string> > table;
     vector<EntryStatus> status;
 
 public:
-    HashTable() {
+    HashTableCerradoUser_Id() {
         table.resize(tableSize);
         status.resize(tableSize, VACIO);
     }
@@ -70,7 +70,7 @@ public:
             hashValue = (hashValue + i) % tableSize;
         }
 
-        return "Key not found";
+        return "Clave no encontrada";
     }
 
     void displayTable() {
