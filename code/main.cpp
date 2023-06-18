@@ -14,15 +14,13 @@ using namespace std;
 //VARIABLES
 string university, user_id, user_name, number_tweets, friends_count, followers_count, created_at;
 
+//ESTRUCTURAS A UTILIZAR
 AVLTree<string> tree_string;
 AVLTree<long> tree_long;
-
 HashTableAbiertoUser_Id hashAbiertoUser_Id;
 HashTableAbiertoUser_Name hashAbiertoUser_Name;
 HashTableCerradoUser_Id hashCerradoUser_Id;
 HashTableCerradoUser_Name hashCerradoUser_Name;
-
-
 
 //PARA TOMAR EL TIEMPO
 template <typename Func>
@@ -36,7 +34,7 @@ long long execution_time_ms(Func function, string tarea, int id_dataset) {
 }
 
 // PROCESOS
-// 1 - insert_arbol_userid
+//1 - insert_arbol_userid
 void insert_arbol_user_id(int id_dataset)
 {
     ifstream file; //ARCHIVO DE ENTRADA
@@ -74,7 +72,7 @@ void insert_arbol_user_id(int id_dataset)
     return;
 }
 
-// 2 - insert_arbol_user_name
+//2 - insert_arbol_user_name
 void insert_arbol_user_name(int id_dataset)
 {
     ifstream file; //ARCHIVO DE ENTRADA
@@ -112,7 +110,7 @@ void insert_arbol_user_name(int id_dataset)
     return;
 }
 
-// 3 - search_in_arbol_user_id
+//3 - search_in_arbol_user_id
 void search_in_arbol_user_id(int id_dataset)
 {
     ifstream file; //ARCHIVO DE ENTRADA
@@ -152,7 +150,7 @@ void search_in_arbol_user_id(int id_dataset)
     return;
 }
 
-// 4 - search_in_arbol_user_name
+//4 - search_in_arbol_user_name
 void search_in_arbol_user_name(int id_dataset)
 {
 
@@ -192,7 +190,7 @@ void search_in_arbol_user_name(int id_dataset)
     return;
 }
 
-// 5 - search_out_arbol_user_id
+//5 - search_out_arbol_user_id
 void search_out_arbol_user_id(int id_dataset)
 {
 
@@ -235,7 +233,7 @@ void search_out_arbol_user_id(int id_dataset)
     return;
 }
 
-// 6 - search_out_arbol_user_name
+//6 - search_out_arbol_user_name
 void search_out_arbol_user_name(int id_dataset)
 {
 
@@ -752,33 +750,26 @@ void search_out_hash_cerrado_user_name(int id_dataset)
 void centro_tareas(string tarea, int id_dataset)
 {
     //ARBOL
-
     if (tarea=="insert_arbol_user_id") {return insert_arbol_user_id(id_dataset); } 
     if (tarea=="insert_arbol_user_name") {return insert_arbol_user_name(id_dataset); } 
-
     if (tarea=="search_in_arbol_user_id") {return search_in_arbol_user_id(id_dataset); } 
     if (tarea=="search_in_arbol_user_name") {return search_in_arbol_user_name(id_dataset); } 
-
     if (tarea=="search_out_arbol_user_id") {return search_out_arbol_user_id(id_dataset); } 
     if (tarea=="search_out_arbol_user_name") {return search_out_arbol_user_name(id_dataset); } 
 
     //HASH ABIERTO
     if (tarea=="insert_hash_abierto_user_id") {return insert_hash_abierto_user_id(id_dataset); } 
     if (tarea=="insert_hash_abierto_user_name") {return insert_hash_abierto_user_name(id_dataset); } 
-
     if (tarea=="search_in_hash_abierto_user_id") {return search_in_hash_abierto_user_id(id_dataset); } 
     if (tarea=="search_in_hash_abierto_user_name") {return search_in_hash_abierto_user_name(id_dataset); } 
-
     if (tarea=="search_out_hash_abierto_user_id") {return search_out_hash_abierto_user_id(id_dataset); } 
     if (tarea=="search_out_hash_abierto_user_name") {return search_out_hash_abierto_user_name(id_dataset); } 
 
     //HASH CERRADO
     if (tarea=="insert_hash_cerrado_user_id") {return insert_hash_cerrado_user_id(id_dataset); } 
     if (tarea=="insert_hash_cerrado_user_name") {return insert_hash_cerrado_user_name(id_dataset); } 
-
     if (tarea=="search_in_hash_cerrado_user_id") {return search_in_hash_cerrado_user_id(id_dataset); } 
     if (tarea=="search_in_hash_cerrado_user_name") {return search_in_hash_cerrado_user_name(id_dataset); } 
-
     if (tarea=="search_out_hash_cerrado_user_id") {return search_out_hash_cerrado_user_id(id_dataset); } 
     if (tarea=="search_out_hash_cerrado_user_name") {return search_out_hash_cerrado_user_name(id_dataset); } 
 
@@ -789,7 +780,7 @@ void centro_tareas(string tarea, int id_dataset)
 int main(int argv, char* argc[]) {
   srand(time(NULL)); 
 
-  int n; //tamaño muestras (1000, 5000, 10000, 15000 y total)
+  int n; //tamaño muestras (1000, 5000, 10000, 15000 y 20000)
   int id_proceso;
 
   int numero_de_experimentos;
@@ -801,12 +792,11 @@ int main(int argv, char* argc[]) {
 
   cout<<"INICIO"<<endl;
 
-  //TIPOS DE PRUEBAS
 
+  //TAREAS DE ACUERDO A PARÁMETRO ENVIADO AL PROGRAMA
   id_proceso=atoi(argc[1]);
-
   switch(id_proceso){
-
+    //LAS TAREAS DE BÚSQUEDA NECESITAN QUE ESTÉ CARGADA CON DATOS LA ESTRUCTURA
     //ARBOL
     case 1: tarea_seleccionada = "insert_arbol_user_id"; break;
     case 2: tarea_seleccionada = "insert_arbol_user_name"; break;
@@ -867,14 +857,12 @@ int main(int argv, char* argc[]) {
       case 2: n = 5000; break;
       case 3: n = 10000; break;
       case 4: n = 15000; break;
-      case 5: n = 29246; break;
+      case 5: n = 20000; break;
 
       default: n = 0; break;
     }
 
     //SI SON PROCESOS DE BUSQUEDA USAN OTROS RANGOS DE DATASET
-
-
     if (
         (id_proceso>2 && id_proceso<7) ||
         (id_proceso>8 && id_proceso<13) ||
