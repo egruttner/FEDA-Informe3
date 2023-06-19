@@ -267,6 +267,7 @@ void search_out_arbol_user_name(int id_dataset)
         getline(file, created_at, '\n');
 
         user_name = user_name + "X";
+
         cout << user_name << tree_string.find(user_name) << endl;
 
     }
@@ -387,7 +388,8 @@ void search_in_hash_abierto_user_id(int id_dataset)
 
         aux = stol(user_id);
         aux++;
-        cout << aux << hashAbiertoUser_Id.searchItem(aux) << endl;
+        hashAbiertoUser_Id.searchItem(aux);
+        //cout << aux << hashAbiertoUser_Id.searchItem(aux) << endl;
 
     }
     return;
@@ -425,7 +427,9 @@ void search_in_hash_abierto_user_name(int id_dataset)
         getline(file, followers_count, ';');
         getline(file, created_at, '\n');
 
-        cout << user_name << hashAbiertoUser_Name.searchItem(user_name) << endl;
+        hashAbiertoUser_Name.searchItem(user_name);
+
+        //cout << user_name << hashAbiertoUser_Name.searchItem(user_name) << endl;
     }
 
     
@@ -465,7 +469,10 @@ void search_out_hash_abierto_user_id(int id_dataset)
 
         aux = stol(user_id);
         aux++;
-        cout << aux << hashAbiertoUser_Id.searchItem(aux) << endl;
+
+        hashAbiertoUser_Id.searchItem(aux);
+
+        //cout << aux << hashAbiertoUser_Id.searchItem(aux) << endl;
 
     }
     return;
@@ -503,7 +510,9 @@ void search_out_hash_abierto_user_name(int id_dataset)
 
         user_name = user_name + "X";
 
-        cout << user_name << hashAbiertoUser_Name.searchItem(user_name) << endl;
+        hashAbiertoUser_Name.searchItem(user_name);
+
+        //cout << user_name << hashAbiertoUser_Name.searchItem(user_name) << endl;
 
     }
     return;
@@ -622,7 +631,9 @@ void search_in_hash_cerrado_user_id(int id_dataset)
 
         aux = stol(user_id);
         aux++;
-        cout << aux << hashCerradoUser_Id.searchItem(aux) << endl;
+        hashCerradoUser_Id.searchItem(aux);
+
+        //cout << aux << hashCerradoUser_Id.searchItem(aux) << endl;
 
     }
     return;
@@ -660,7 +671,9 @@ void search_in_hash_cerrado_user_name(int id_dataset)
         getline(file, followers_count, ';');
         getline(file, created_at, '\n');
 
-        cout << user_name << hashCerradoUser_Name.searchItem(user_name) << endl;
+        hashCerradoUser_Name.searchItem(user_name);
+
+        //cout << user_name << hashCerradoUser_Name.searchItem(user_name) << endl;
     }
 
     
@@ -700,7 +713,9 @@ void search_out_hash_cerrado_user_id(int id_dataset)
 
         aux = stol(user_id);
         aux++;
-        cout << aux << hashCerradoUser_Id.searchItem(aux) << endl;
+        hashCerradoUser_Id.searchItem(aux); 
+
+        //cout << aux << hashCerradoUser_Id.searchItem(aux) << endl;
 
     }
     return;
@@ -737,8 +752,9 @@ void search_out_hash_cerrado_user_name(int id_dataset)
         getline(file, created_at, '\n');
 
         user_name = user_name + "X";
+        hashCerradoUser_Name.searchItem(user_name);
 
-        cout << user_name << hashCerradoUser_Name.searchItem(user_name) << endl;
+        //cout << user_name << hashCerradoUser_Name.searchItem(user_name) << endl;
 
     }
     return;
