@@ -24,7 +24,8 @@ HashTableCerradoUser_Name hashCerradoUser_Name;
 
 //PARA TOMAR EL TIEMPO
 template <typename Func>
-long long execution_time_ms(Func function, string tarea, int id_dataset) {
+long long execution_time_ms(Func function, string tarea, int id_dataset) 
+{
   auto start_time = std::chrono::high_resolution_clock::now();
   
   function(tarea, id_dataset);
@@ -744,8 +745,6 @@ void search_out_hash_cerrado_user_name(int id_dataset)
 }
 
 
-
-
 //CENTRO DE LLAMADA DE FUNCIONES
 void centro_tareas(string tarea, int id_dataset)
 {
@@ -812,6 +811,7 @@ int main(int argv, char* argc[]) {
     case 6: tarea_seleccionada = "search_out_arbol_user_name";
             insert_arbol_user_name(5);
             break;
+
     //HASH ABIERTO
     case 7: tarea_seleccionada = "insert_hash_abierto_user_id"; break;
     case 8: tarea_seleccionada = "insert_hash_abierto_user_name"; break;
@@ -881,7 +881,6 @@ int main(int argv, char* argc[]) {
       }
     }
 
-
     cout<<"Tarea seleccionada: "<< tarea_seleccionada<<endl;
 
     nombre_archivo_salida = dir_csv + tarea_seleccionada + "_results.csv";
@@ -891,8 +890,8 @@ int main(int argv, char* argc[]) {
     int numero_de_experimentos=10;
     for(int j = 0; j < numero_de_experimentos; j++){ 
 
-      long long single_execution_time = execution_time_ms(centro_tareas, tarea_seleccionada, id_dataset);
-      mm_total_time += single_execution_time;
+        long long single_execution_time = execution_time_ms(centro_tareas, tarea_seleccionada, id_dataset);
+        mm_total_time += single_execution_time;
       
     }
     double mm_avg_time = mm_total_time / numero_de_experimentos;
