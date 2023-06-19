@@ -21,6 +21,8 @@ python3 plot_dos.py csv/search_in_hash_cerrado_user_id_results.csv csv/search_ou
 python3 plot_tres.py csv/insert_arbol_user_id_results.csv csv/search_in_arbol_user_id_results.csv csv/search_out_arbol_user_id_results.csv Inserción Búsqueda_FOUND Búsqueda_FAIL "Rendimiento Operación Árbol - User Id"
 
 
+python3 plot_tres.py csv/insert_arbol_user_id_results.csv csv/search_in_arbol_user_id_results.csv csv/search_out_arbol_user_id_results.csv Inserción Búsqueda_FOUND Búsqueda_FAIL "Rendimiento Operación Árbol - User Id"
+
 
 
 
